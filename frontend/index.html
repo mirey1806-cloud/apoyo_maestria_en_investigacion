@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Investiga IA — Maestría COCID</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=5">
+</head>
+<body>
+
+  <div id="pantalla-login" class="pantalla-login">
+
+    <div class="franja-navy franja-top">
+      <div class="franja-contenido">
+        <span class="marca-texto"><img class="sello sello-chico" src="img/logo.png" alt="Logo COCID">Colegio Universitario Científico de Datos <span class="acento">COCID</span></span>
+        <span class="franja-tag">Maestría en Metodología de Investigación y Análisis de Datos</span>
+      </div>
+    </div>
+
+    <div class="zona-hero">
+      <div class="tarjeta-login">
+        <div class="linea-dorada"></div>
+        <h1>Bienvenidos a COCID<span class="acento"></span></h1>
+        <p class="subtitulo-login">Inicia sesión para continuar</p>
+        <form id="form-login">
+          <label>Usuario
+            <input type="text" name="usuario" required autocomplete="username">
+          </label>
+          <label>Contraseña
+            <input type="password" name="contrasena" required autocomplete="current-password">
+          </label>
+          <button type="submit">Iniciar sesión</button>
+          <p class="error-login" id="error-login"></p>
+        </form>
+      </div>
+    </div>
+
+    <div class="franja-navy franja-bottom">
+      <p>Colegio Universitario Científico de Datos (COCID) — Herramienta de apoyo académico</p>
+    </div>
+  </div>
+
+ 
+  <div id="app" class="app oculto">
+    <div class="franja-navy franja-top">
+      <div class="franja-contenido">
+        <div class="marca">
+         <img class="sello sello-chico" src="img/logo.png" alt="Logo COCID">
+          <div>
+            <h1>Colegio Universitario Científico de Datos <span class="acento">COCID</span></h1>
+            <p>Maestría en Metodología de Investigación y Análisis de Datos</p>
+          </div>
+        </div>
+        <div class="sesion">
+          <span id="nombre-usuario"></span>
+          <button id="btn-logout" class="btn-fantasma">Cerrar sesión</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tarjetas resumen de los 3 módulos, estilo "servicios" -->
+    <div class="franja-servicios">
+      <div class="tarjeta-servicio activa" data-tab="protocolos">
+        <span class="icono icono-azul">1</span>
+        <div>
+          <strong>Constructor de protocolos</strong>
+          <p>Genera el borrador de tu protocolo de investigación</p>
+        </div>
+      </div>
+      <div class="tarjeta-servicio" data-tab="literatura">
+        <span class="icono icono-azul">2</span>
+        <div>
+          <strong>Analizador de literatura</strong>
+          <p>Analiza y compara artículos científicos</p>
+        </div>
+      </div>
+      <div class="tarjeta-servicio" data-tab="errores">
+        <span class="icono icono-azul">3</span>
+        <div>
+          <strong>Detector de errores</strong>
+          <p></p>
+        </div>
+      </div>
+    </div>
+
+  
+    <main>
+      <!-- MÓDULO 1 -->
+      <section id="protocolos" class="tab-content active">
+        <h2>Constructor de protocolos de investigación</h2>
+        <p class="ayuda">Completa los datos de tu proyecto, o adjunta un PDF de contexto (opcional).</p>
+        <form id="form-protocolos">
+          <label>Tema de investigación
+            <input type="text" name="tema" required>
+          </label>
+          <label>Problema u oportunidad observada
+            <textarea name="problema" rows="3" required></textarea>
+          </label>
+          <div class="fila-2">
+            <label>Enfoque metodológico
+              <select name="enfoque">
+                <option value="">Sugerir automáticamente</option>
+                <option value="cuantitativo">Cuantitativo</option>
+                <option value="cualitativo">Cualitativo</option>
+                <option value="mixto">Mixto</option>
+              </select>
+            </label>
+            <label>Idioma
+              <select name="idioma">
+                <option value="es">Español</option>
+                <option value="en">English</option>
+                <option value="fr">Français</option>
+                <option value="pt">Português</option>
+                <option value="de">Deutsch</option>
+                <option value="it">Italiano</option>
+              </select>
+            </label>
+          </div>
+          <label>Contexto adicional (opcional)
+            <textarea name="contexto" rows="2"></textarea>
+          </label>
+          <label class="campo-archivo">Adjuntar PDF de contexto (opcional)
+            <input type="file" name="archivo" accept="application/pdf">
+          </label>
+          <button type="submit">Generar borrador de protocolo</button>
+        </form>
+        <div class="resultado oculto" id="bloque-resultado-protocolos">
+          <div class="resultado" id="resultado-protocolos"></div>
+          <button id="btn-exportar-word" class="btn-secundario">Descargar en Word</button>
+        </div>
+      </section>
+
+      <!-- MÓDULO 2 -->
+      <section id="literatura" class="tab-content">
+        <h2>Analizador de literatura científica</h2>
+        <p class="ayuda">Pega el texto de uno o más artículos (sepáralos con una línea "---"), o adjunta un PDF.</p>
+        <form id="form-literatura">
+          <label>Idioma
+            <select name="idioma">
+              <option value="es">Español</option>
+              <option value="en">English</option>
+              <option value="fr">Français</option>
+              <option value="pt">Português</option>
+              <option value="de">Deutsch</option>
+              <option value="it">Italiano</option>
+            </select>
+          </label>
+          <label>Texto del/los artículo(s) (opcional si adjuntas PDF)
+            <textarea name="articulos_texto" rows="8" placeholder="Pega aquí el texto. Si son varios artículos, sepáralos con una línea que diga: ---"></textarea>
+          </label>
+          <label class="campo-archivo">Adjuntar PDF (opcional)
+            <input type="file" name="archivo" accept="application/pdf">
+          </label>
+          <button type="submit">Analizar literatura</button>
+        </form>
+        <div class="resultado oculto" id="bloque-resultado-literatura">
+          <div class="resultado" id="resultado-literatura"></div>
+          <button id="btn-exportar-word-literatura" class="btn-secundario">Descargar en Word</button>
+        </div>
+      </section>
+
+      <!-- MÓDULO 3 -->
+      <section id="errores" class="tab-content">
+        <h2>Detector de errores metodológicos</h2>
+        <p class="ayuda">Pega el texto de tu protocolo o avance de tesis, o adjunta un PDF. Se revisa la coherencia entre objetivos, hipótesis, metodología y conclusiones.</p>
+        <form id="form-errores">
+          <div class="fila-2">
+            <label>Nombre del documento (opcional)
+              <input type="text" name="nombre_documento">
+            </label>
+            <label>Idioma
+              <select name="idioma">
+                <option value="es">Español</option>
+                <option value="en">English</option>
+                <option value="fr">Français</option>
+                <option value="pt">Português</option>
+                <option value="de">Deutsch</option>
+                <option value="it">Italiano</option>
+              </select>
+            </label>
+          </div>
+          <label>Texto del documento (opcional si adjuntas PDF)
+            <textarea name="texto_documento" rows="10" placeholder="Pega aquí el texto de tu documento..."></textarea>
+          </label>
+          <label class="campo-archivo">Adjuntar PDF (opcional)
+            <input type="file" name="archivo" accept="application/pdf">
+          </label>
+          <button type="submit">Revisar coherencia metodológica</button>
+        </form>
+        <div class="resultado oculto" id="bloque-resultado-errores">
+          <div class="resultado" id="resultado-errores"></div>
+          <button id="btn-exportar-word-errores" class="btn-secundario">Descargar en Word</button>
+        </div>
+      </section>
+    </main>
+
+    <div class="franja-navy franja-bottom">
+      <p>Colegio Universitario Científico de Datos (COCID) — Maestría en Metodología de Investigación y Análisis de Datos</p>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js"></script>
+  <script src="app.js?v=5"></script>
+</body>
+</html>
